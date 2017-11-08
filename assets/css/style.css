@@ -1,6 +1,12 @@
-#banner {
-	margin 0 auto;
+#topbanner {
+	width: 100%;
 }
-h1 {
+#banner {
+	width: 100%;
+}
+#welcome {
 	color:green;
+}
+img {
+	width: 100%;
 }
