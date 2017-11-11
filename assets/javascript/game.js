@@ -18,6 +18,7 @@ var lettersGuessed = [""]
 var points = 0
 var blankWord = []
 var alreadyGuessed = []
+var wordsGuessed = ['']
 
 
 // let's get started
@@ -25,7 +26,7 @@ var alreadyGuessed = []
 function gameStart() {
 
     // choose one word at random from the list
-
+    // that hasn't already been
     var word = words[Math.floor(Math.random() * words.length)];
     console.log(word);
     // the console helps me cheat.
@@ -94,6 +95,8 @@ function gameStart() {
         // victory condition
         if (word == blankWord.join('')) {
             points++
+            wordsGuessed.push(word);
+            console.log(wordsGuessed);
             $('#guesses-remaining').text(guessesRemaining);
             $('#score').text(points);
             $('#welcome').text("Great work! Here's another word.");
