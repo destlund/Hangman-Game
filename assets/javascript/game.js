@@ -1,113 +1,123 @@
 // this is our list of words
-	var words = [
-		"xenomorph",
-		"facehugger",
-		"ripley",
-		"nostromo",
-		"weyland",
-		"chestburster",
-		"synthetic",
-		"flamethrower",
-		"pilot",
-		]
-	var lettersGuessed = [""]
-	var points = 0
-	var guessesRemaining = 10
-
+var words = [
+    "xenomorph",
+    "facehugger",
+    "ripley",
+    "nostromo",
+    "weyland",
+    "chestburster",
+    "synthetic",
+    "flamethrower",
+    "pilot",
+]
+var lettersGuessed = [""]
+var points = 0
+var blankWord = []
+var alreadyGuessed = []
 
 
 // let's get started
 
 function gameStart() {
 
-// choose one word at random from the list
+    // choose one word at random from the list
 
-	var word = words[Math.floor(Math.random() * words.length)];
-	console.log(word);
-	var letters = (/^[a-z]+$/) 
-	var blankWord = []
-	var alreadyGuessed = []
-
-// make a version of the word where every letter is a blank
-	// function makeBlanks() { // why is this a function?
-		var blank = "__&nbsp;";
-		for (var i = 0; i < word.length; i++) {
-			blankWord.push(blank);
-		}
-		// return blankWord;
-		console.log(blankWord);
-	// }
+    var word = words[Math.floor(Math.random() * words.length)];
+    console.log(word);
+    var letters = (/^[a-z]+$/)
+    var blankWord = []
+    var alreadyGuessed = []
+    var guessesRemaining = 10
 
 
-// display the blanks where class is word-blanks
+    // make a version of the word where every letter is a blank
+    // function makeBlanks() { // why is this a function?
+    var blank = "__&nbsp;";
+    for (var i = 0; i < word.length; i++) {
+        blankWord.push(blank);
+    }
 
- $('#word-blanks').html(blankWord);
 
-// on keystroke, check whether the letter is in word
+    // display the blanks where class is word-blanks
 
-     	document.onkeyup = function(event) {
-		var userGuess = event.key.toLowerCase();
-		var isLetter = "" ;
-		console.log(isLetter) ;
-		$('#welcome').text("Here we go!");
+    $('#word-blanks').html(blankWord);
 
-// it's there
-		if (word.includes(userGuess)) {
-			console.log(userGuess + " is in the word");
-			// add one to lettersGuessed and display it in the blanks, add one to score
+    // on keystroke, check whether the letter is in word
 
-// find the guess in Word and change blankword to userguess where appropriate
-			for (i = 0; i < word.length; i++) {
-				if (userGuess == word[i]) {
-					blankWord[i] = userGuess
-				}
-			}
+    document.onkeyup = function(event) {
+        var userGuess = event.key.toLowerCase();
+        var isLetter = "";
+        console.log(isLetter);
+        $('#welcome').text("Here we go!");
 
-// victory conditions
-			if (word==blankWord.join('')) {
-				points++
-				gameStart()
-			}
+        // it's there
+        if (word.includes(userGuess)) {
 
-			else {}
+            // at least get rid of 'you haven't guessed anything'
+            $('#letters-guessed').text(alreadyGuessed.join(', '));
+            // find the guess in Word and change blankword to userguess where appropriate
+            for (i = 0; i < word.length; i++) {
+                if (userGuess == word[i]) {
+                    blankWord[i] = userGuess;
+                }
+            }
+            $('#word-blanks').html(blankWord);
+            $('#guesses-remaining').text(guessesRemaining);
+            $('#score').text(points);
+        } //end it's there
 
-		} //end it's there
 
-// make sure it's a letter with elseif - currently broken
-		// else if (letters.includes(userGuess)) {
-			// console.log(userGuess + " is not in the word")
-			// // remove one point from guesses remaining
-			// guessesRemaining-- 
-		// }
-// that's no letter -would prefer an elseif to make else not a letter at all
+        // it's not and has already been guessed
+        else if (alreadyGuessed.includes(userGuess)) {
 
-//it's not there
-		else {
-			console.log("not a letter")
-			console.log(userGuess + " is not in the word")
-			// remove one point from guesses remaining
-			guessesRemaining-- 
-			console.log(guessesRemaining + "guesses remaining")
-			alreadyGuessed.push(userGuess)
-		} // end it's not there
+        } //end it's not
+        else {
+            console.log(userGuess + " is not in the word")
+            // remove one point from guesses remaining
+            guessesRemaining--;
+            alreadyGuessed.push(userGuess);
+            $('#letters-guessed').text(alreadyGuessed.join(', '));
+            $('#guesses-remaining').text(guessesRemaining);
+        }
 
-// print it all on the page
-			 $('#word-blanks').html(blankWord);
-			 $('#guesses-remaining').text(guessesRemaining);
-			 $('#score').text(points);
-			 $('#letters-guessed').text(alreadyGuessed);
-console.log(blankWord)
-console.log(blankWord.join(''))
+        // loss condition
+        if (guessesRemaining == 0) {
+            $('#letters-guessed').text('')
+            $('#welcome').text("You got facehugged!");
+            gameStart();
+        }
 
-			
-		
-		} // end keypress event
-		
+        // victory condition
+        if (word == blankWord.join('')) {
+            points++
+            $('#guesses-remaining').text(guessesRemaining);
+            $('#score').text(points);
+            $('#welcome').text("Great work! Here's another word.");
+            gameStart()
+        }
+
+
+        // make sure it's a letter with elseif - currently broken
+        // else if (letters.includes(userGuess)) {
+        // console.log(userGuess + " is not in the word")
+        // // remove one point from guesses remaining
+        // guessesRemaining-- 
+        // }
+        // that's no letter -would prefer an elseif to make else not a letter at all
+
+
+        // print it all on the page
+
+    } // end keypress event
+
 } // end game start function
+
+
 
 // now run the whole thing in a for loop ten times and then victory!
 
 gameStart()
-	// for (; points < 10) {
-	// 	gameStart
-	// }
+
+// for (; points < 10) {
+//  gameStart
+// }

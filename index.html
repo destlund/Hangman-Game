@@ -1,7 +1,7 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,68 +9,61 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Alien Hangman</title>
-
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-
     <!-- I see a bootstrap and I want to paint it black -->
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cyborg/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
-
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
+</head>
 
-  <body>
+<body>
     <header>
-      <div class="container">
-        <div id="banner">
-          <img src="assets/images/banner.jpg" alt="Alien Hangman" class="responsive" id="topbanner">
+        <div class="container">
+            <div id="banner">
+                <img src="assets/images/banner.jpg" alt="Alien Hangman" class="responsive" id="topbanner">
+            </div>
         </div>
-      </div>
     </header>
-
     <div class="container">
-      <div class="jumbotron">
-        <div class="row">
-          <div class="col-md-12">
-             <h3 id="welcome" class="text-center">Press any key to get started!<br /></h3>
-          </div>
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 id="welcome" class="text-center">Press any key to get started!<br /></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <p class="lead text-center">Wins: <span id="score"></span></p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-center">Current Word:
+                        <br />
+                        <span id="word-blanks">Computer is still too dumb to show blanks.</span>
+                    </p>
+                </div>
+                <div class="col-md-3">
+                    <p class="text-center">Guesses remaining: <span id="guesses-remaining"></span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-center">Letters already guessed:</p>
+                    <p class="text-center"><span id="letters-guessed">You haven't guessed anything yet!</span></p>
+                </div>
+            </div>
         </div>
-
-        <div class="row">
-          <div class="col-md-3">
-            <p class="lead text-center">Wins: <span id="score"></span></p>
-          </div>
-          <div class="col-md-6">
-            <p class="text-center">Current Word:<br />
-              <span id="word-blanks">Computer is still too dumb to show blanks.</span>
-            </p>
-          </div>
-          <div class="col-md-3">
-            <p class="text-center">Guesses remaining: <span id="guesses-remaining"></span></p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <p class="text-center">Letters already guessed:</p>
-            <p class="text-center"><span id="letters-guessed">You haven't guessed anything yet!</span></p>
-          </div>
-        </div>
-
-    </div><!-- /.container -->
-
-
-    <!-- Bootstrap core JavaScript
+        <!-- /.container -->
+        <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="assets/javascript/game.js"></script>
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="assets/javascript/game.js"></script>
+</body>
 
-  </body>
 </html>
