@@ -9,6 +9,10 @@ var words = [
     "synthetic",
     "flamethrower",
     "pilot",
+    "queen",
+    "egg",
+    "cat",
+    "jones"
 ]
 var lettersGuessed = [""]
 var points = 0
@@ -24,6 +28,7 @@ function gameStart() {
 
     var word = words[Math.floor(Math.random() * words.length)];
     console.log(word);
+    // the console helps me cheat.
     var letters = (/^[a-z]+$/)
     var blankWord = []
     var alreadyGuessed = []
@@ -47,7 +52,6 @@ function gameStart() {
     document.onkeyup = function(event) {
         var userGuess = event.key.toLowerCase();
         var isLetter = "";
-        console.log(isLetter);
         $('#welcome').text("Here we go!");
 
         // it's there
@@ -70,15 +74,15 @@ function gameStart() {
         // it's not and has already been guessed
         else if (alreadyGuessed.includes(userGuess)) {
 
-        } //end it's not
+        } //end it's not and already guessed
+
+        // it's not but it's new
         else {
-            console.log(userGuess + " is not in the word")
-            // remove one point from guesses remaining
             guessesRemaining--;
             alreadyGuessed.push(userGuess);
             $('#letters-guessed').text(alreadyGuessed.join(', '));
             $('#guesses-remaining').text(guessesRemaining);
-        }
+        } //end it's not but it's  new
 
         // loss condition
         if (guessesRemaining == 0) {
@@ -96,28 +100,9 @@ function gameStart() {
             gameStart()
         }
 
-
-        // make sure it's a letter with elseif - currently broken
-        // else if (letters.includes(userGuess)) {
-        // console.log(userGuess + " is not in the word")
-        // // remove one point from guesses remaining
-        // guessesRemaining-- 
-        // }
-        // that's no letter -would prefer an elseif to make else not a letter at all
-
-
-        // print it all on the page
-
     } // end keypress event
 
 } // end game start function
 
 
-
-// now run the whole thing in a for loop ten times and then victory!
-
 gameStart()
-
-// for (; points < 10) {
-//  gameStart
-// }
