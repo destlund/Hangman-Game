@@ -18,7 +18,6 @@ var lettersGuessed = [""]
 var points = 0
 var blankWord = []
 var alreadyGuessed = []
-var wordsGuessed = ['']
 
 
 // let's get started
@@ -34,6 +33,7 @@ function gameStart() {
     var blankWord = []
     var alreadyGuessed = []
     var guessesRemaining = 10
+    var score = 0
 
 
     // make a version of the word where every letter is a blank
@@ -58,7 +58,6 @@ function gameStart() {
         // it's there
         if (word.includes(userGuess)) {
 
-            // at least get rid of 'you haven't guessed anything'
             $('#letters-guessed').text(alreadyGuessed.join(', '));
             // find the guess in Word and change blankword to userguess where appropriate
             for (i = 0; i < word.length; i++) {
@@ -87,25 +86,30 @@ function gameStart() {
 
         // loss condition
         if (guessesRemaining == 0) {
-            $('#letters-guessed').text('')
+            $('#letters-guessed').text('');
             $('#welcome').text("You got facehugged!");
             gameStart();
         }
 
         // victory condition
         if (word == blankWord.join('')) {
-            points++
-            wordsGuessed.push(word);
-            console.log(wordsGuessed);
+            points++;
+            words.splice(words.indexOf(blankWord.join('')), 1);
+            console.log(words);
             $('#guesses-remaining').text(guessesRemaining);
             $('#score').text(points);
-            $('#welcome').text("Great work! Here's another word.");
-            gameStart()
+            if (10 == points) {
+                $('#welcome').text("Congratulations! You beat the game!")
+                document.onkeyup=false
+                return
+            }
+            else {
+                $('#welcome').text("Great work! Here's another word.");
+                gameStart()
+            }
         }
 
     } // end keypress event
 
 } // end game start function
-
-
-gameStart()
+gameStart();
